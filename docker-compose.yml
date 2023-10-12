@@ -1,0 +1,27 @@
+version: "3.11"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    entrypoint: ["sh", "/usr/src/app/entrypoint.sh"]
+    volumes:
+      - "./backend-flask:/usr/src/app"
+    ports:
+      - 5004:5000
+    env_file: ./backend/.env
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./frontend:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    ports:
+      - 3002:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_BACKEND_SERVICE_URL=http://localhost:5004
+    depends_on:
+      - backend

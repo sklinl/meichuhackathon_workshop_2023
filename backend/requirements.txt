@@ -1,0 +1,17 @@
+Flask==2.2.5
+python-dotenv==0.21.1
+Flask-RESTful==0.3.10
+Flask-Cors==4.0.0
+gunicorn==20.1.0
+waitress==2.1.2 #for windows
+
+## log
+prometheus-flask-exporter<=0.22.4
+
+# utils needed
+pyyaml==6.0.1
+dacite==1.8.1
+
+# for dev
+pylint==2.17.5
+coverage==7.2.7

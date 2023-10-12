@@ -1,0 +1,11 @@
+
+db:
+  SQLALCHEMY_DATABASE_URI: mariadb+mariadbconnector://forecastapp:password456@172.0.0.1:3306/SALES
+
+frontend:
+  STATIC_FOLDER: ../../frontend-react/build
+
+metabase:
+  METABASE_SITE_URL: http://localhost:3001
+  METABASE_SECRET_KEY: 5aabb4be1148abf98ccf257b5f37dd8bb68128b98690f5473048ac92130f1a4d
+  METABASE_DASHBOARD_NO: 5
