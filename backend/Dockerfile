@@ -13,8 +13,6 @@ RUN apt-get update -y && apt-get update \
   && apt-get install -y --no-install-recommends curl gcc g++ gnupg unixodbc-dev apt-utils
 
 
-# mssql
-
 # set working directory
 WORKDIR /usr/src/app
 

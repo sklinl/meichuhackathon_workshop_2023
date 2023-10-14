@@ -8,29 +8,30 @@ from flask_cors import CORS
 from prometheus_flask_exporter import PrometheusMetrics
 
 # read env
-import os
 from dotenv import load_dotenv
 load_dotenv()
+
+from common import logging
+logger = logging.getLogger("init")
 
 metrics = PrometheusMetrics.for_app_factory()
 
 def create_app(config_class=None):
-    if not config_class:
-        db_config = os.getenv("APP_SETTINGS")
 
     # if we want use react build result
     # add static_folder='../frontend/build', static_url_path='' to Flask
     app = Flask(__name__)
-    app.config.from_object(db_config)
+
 
     # if we want to seperate frontend & backend
     CORS(app, resources={r"/*":{"origins":"*"}})
 
-    # # Initialize Flask extensions here
+    # # Initialize Flask extensions here (ex. DB)
+    # if not config_class:
+    #     db_config = os.getenv("APP_SETTINGS")
+    # app.config.from_object(db_config)
     # db.init_app(app)
     # Migrate(app=app, db=db, compare_type=True)
-
-    # metrics = PrometheusMetrics(app)
 
 
     # Register blueprints here

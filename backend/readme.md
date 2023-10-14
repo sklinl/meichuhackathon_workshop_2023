@@ -1,4 +1,3 @@
-
 ## Virtual env
 python -m venv hackthon
 /hackthon/Scripts/activate.bat
