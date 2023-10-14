@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     entrypoint: ["sh", "/usr/src/app/entrypoint.sh"]
     volumes:
-      - "./backend-flask:/usr/src/app"
+      - "./backend:/usr/src/app"
     ports:
       - 5004:5000
     env_file: ./backend/.env

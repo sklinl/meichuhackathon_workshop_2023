@@ -12,4 +12,4 @@ scrape_configs:
       - targets: ["prometheus:9090"]
   - job_name: "flask_app"
     static_configs:
-      - targets: ["host.docker.internal:5000"]
+      - targets: ["host.docker.internal:5004"]
