@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Modal, Upload, Button, Spin, message } from 'antd';
-import {Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import Layouts from '../components/Layouts';
 import TypingEffect from '../utils/typingEffect';
+
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -15,7 +16,6 @@ const getBase64 = (file) =>
 
 function AnalysisResult() {
 
-  const [file, setFile] = useState(null);
   const [fileList, setFileList] = useState([]);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -30,6 +30,7 @@ function AnalysisResult() {
 
 
   const handleUpload = () => {
+    const backendServiceUrl = process.env.REACT_APP_BACKEND_SERVICE_URL;
     setLoading(true);
 
     if (fileList.length === 0) {
@@ -40,7 +41,7 @@ function AnalysisResult() {
     const formData = new FormData();
     formData.append('image', fileList[0].originFileObj);
 
-    fetch('http://localhost:5009/upload', {
+    fetch(`${backendServiceUrl}/upload`, {
       method: 'POST',
       body: formData,
     })
@@ -80,8 +81,7 @@ function AnalysisResult() {
     setPreviewOpen(true);
   };
 
-  const handleChange = info => {
-    console.log(info);
+  const handleChange = (info) => {
     setFileList(info.fileList);
   };
 
@@ -105,14 +105,13 @@ function AnalysisResult() {
               <Upload
                 listType="picture-card"
                 fileList={fileList}
-                onPreview={handlePreview}
                 onChange={handleChange}
+                onPreview={handlePreview}
                 onRemove={handleRemove}
                 customRequest={({ onSuccess, onError, file }) => {
                   // Handle file upload logic here
                   // You can send the file to your server or process it as needed
                   // Example: send the file to a server using fetch
-                  setFile(file);
                   onSuccess();
                 }}
               >

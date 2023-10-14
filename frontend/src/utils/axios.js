@@ -4,17 +4,16 @@ import ReactDOM from 'react-dom';
 import { message, Spin } from 'antd';
 
 const Axios = axios.create({
-    // baseURL: process.env.BASE_URL, // 设置请求的base url
-    timeout: 20000, // 设置超时时长
+    baseURL: process.env.REACT_APP_BACKEND_SERVICE_URL, // setting base url
+    timeout: 20000,
 })
 
-// 设置post请求头
+// post default header
 Axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
-// 当前正在请求的数量
 let requestCount = 0
 
-// 显示loading
+// show loading
 function showLoading () {
     if (requestCount === 0) {
         var dom = document.createElement('div')
@@ -25,7 +24,7 @@ function showLoading () {
     requestCount++
 }
 
-// 隐藏loading
+// hidden loading
 function hideLoading () {
     requestCount--
     if (requestCount === 0) {
@@ -33,24 +32,23 @@ function hideLoading () {
     }
 }
 
-// 请求前拦截
+// before request
 Axios.interceptors.request.use(config => {
-   // requestCount为0，才创建loading, 避免重复创建
+   // if requestCount=0，loading, avoid re-showing
     if (config.headers.isLoading !== false) {
         showLoading()
     }
     return config
 }, err => {
-    // 判断当前请求是否设置了不显示Loading
     if (err.config.headers.isLoading !== false) {
         hideLoading()
     }
     return Promise.reject(err)
 })
 
-// 返回后拦截
+// after request
 Axios.interceptors.response.use(res => {
-    // 判断当前请求是否设置了不显示Loading
+    // hidden loading
     if (res.config.headers.isLoading !== false) {
         hideLoading()
     }
@@ -68,7 +66,6 @@ Axios.interceptors.response.use(res => {
     return Promise.reject(err)
 })
 
-// 把组件引入，并定义成原型属性方便使用
 Component.prototype.$axios = Axios
 
 export default Axios
