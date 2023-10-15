@@ -2,11 +2,19 @@
 
 A React app in JavaScript
 
+## Install Dependencies
+
+```
+npm install
+```
+
 ## Start app
 
 ```
 npm start
 ```
+
+Visit http://localhost:3000 (default port `3000`)
 
 ## Modify your `.env` file
 
