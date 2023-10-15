@@ -5,5 +5,5 @@ HackMD: https://hackmd.io/@doXXdcdvQhuFp_00pi9M4w/SkozB6v-a
 ---
 
 - Frontend: React (JavaScript)
-- Backend: Flask (Python)
+- Backend: Flask (Python 3.11)
 - Monitor (Prometheus & Grafana)

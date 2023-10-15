@@ -2,6 +2,10 @@
 
 A Flask app in python
 
+## Requirement
+python 3.11
+requirements.txt
+
 ## Virtual env
 
 Create your virtual environment (using `venv` or `virtualenv`)
