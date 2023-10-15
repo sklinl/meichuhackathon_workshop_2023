@@ -17,7 +17,7 @@ python -m venv hackathon
 for Windows
 
 ```
-/hackathon/Scripts/activate.bat
+.\hackathon\Scripts\activate.bat
 ```
 
 for Linux/MacOS
@@ -39,5 +39,6 @@ edit your `.env` according to your environment
 ## Start flask
 
 ```
+(local) flask run
 (windows) waitress-serve --host 127.0.0.1 --port 5009 --call app:create_app
 ```

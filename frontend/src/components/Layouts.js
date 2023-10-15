@@ -32,6 +32,15 @@ const Layouts = (props) => {
               </div>
             </Link>
           </Menu.Item>
+
+          <Menu.Item key="2">
+            <Link to="/aaaa">
+              <div>
+                <AppstoreOutlined />
+                <span> LLM </span>
+              </div>
+            </Link>
+          </Menu.Item>
         </Menu>
       </Header>
       <Content
